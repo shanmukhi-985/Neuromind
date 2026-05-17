@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Activity Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard">
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    {% include 'sidebar.html' %}
+
+    <div class="content">
+        <div class="main-box">
+
+            <h2>🎉 Great Job!</h2>
+
+            <p>You completed <b>{{ activity }}</b></p>
+
+            {% set act = activity.lower() %}
+
+            {% if act == "sleep" %}
+                <p>Sleep: <b>{{ value }} hours</b></p>
+
+            {% elif act in ["walk", "breathing", "outdoor"] %}
+                <p>Duration: <b>{{ value }}</b></p>
+
+            {% elif act == "music" %}
+                <p>Selected Language: <b>{{ value }}</b></p>
+
+            {% elif act == "gratitude" %}
+                <p>Your reflection has been saved 🌟</p>
+
+            {% elif act == "yoga" %}
+                <p>Successfully completed today's exercises ✅</p>
+
+            {% elif act == "professional_help" %}
+                <p>Status: <b>Reviewed Support Guidance</b></p>
+
+            {% else %}
+                <p>Completed Successfully ✅</p>
+            {% endif %}
+
+            <br>
+
+            <div class="actions">
+                <!-- FIXED GUIDANCE -->
+                <a href="{{ url_for('guidance', level=level) }}" class="btn primary">
+                    Back to Guidance
+                </a>
+
+                <!-- FIXED DO AGAIN -->
+                <a href="/activity/{{ act }}?level={{ level }}" class="btn secondary">
+                    Do Again
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("hidden");
+}
+</script>
+
+</body>
+</html>

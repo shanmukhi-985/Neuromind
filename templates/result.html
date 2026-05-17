@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    {% include 'sidebar.html' %}
+
+    <!-- MAIN CONTENT -->
+    <div class="content">
+
+        <div class="main-box">
+
+            <h2>Your Result: {{ level }}</h2>
+
+            {% if "No Depression" in level %}
+                <p>You're doing great! Keep maintaining your healthy habits 🌿</p>
+
+            {% elif "Mild" in level %}
+                <p>You might be feeling a bit low. Let’s work on improving your mood 💙</p>
+
+            {% elif "Moderate" in level %}
+                <p>Your stress levels are noticeable. Let's take steps to improve it ⚡</p>
+
+            {% else %}
+                <p>You may need serious attention. We are here to help you ❤️</p>
+
+            {% endif %}
+
+            <br><br>
+        <div class="result-actions">
+
+            {% if "No Depression" in level %}
+            <a href="/dashboard" class="btn primary">Go to Home Page</a>
+            {% elif "Mild" in level %}
+                <a href="/guidance/mild" class="btn primary">Get Guidance</a>
+
+            {% elif "Moderate" in level %}
+                <a href="/guidance/moderate" class="btn primary">Get Help Plan</a>
+            
+            {% else %}
+                <a href="/guidance/severe" class="btn primary">Get Support</a>
+            {% endif %}
+
+            {% if source == "camera" %}
+                <a href="{{ url_for('scan_emotion') }}" class="btn secondary full">
+                    Recheck Mood
+                </a>
+            {% else %}
+                <a href="/input_test" class="btn secondary full">
+                    Recheck Mood
+                </a>
+            {% endif %}
+
+        </div>
+            
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("hidden");
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guidance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard">
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    {% include 'sidebar.html' %}
+
+    <div class="content">
+        <div class="main-box guidance-box">
+
+            <h2 class="guide-title">Personalized Guidance</h2>
+
+            {% if level == "mild" %}
+
+                <p class="guide-sub">🌿 Small steps can make a big difference:</p>
+
+                <ul class="guide-list">
+                    <li>
+                    <a href="/activity/walk?level={{ level }}" class="activity-btn">🚶 Take a short walk</a>
+                    </li>
+                    <li>
+                        <a href="/activity/music?level={{ level }}" class="activity-btn"> 🎧 Listen to calming music</a>    
+                    </li>
+                    <li>
+                        <a href="/contacts?level={{ level }}" class="activity-btn">💬 Talk to a close friend</a>
+                    </li>
+                </ul>
+            {% elif level == "moderate" %}
+
+                <p class="guide-sub">⚡ Let’s bring structure into your routine:</p>
+
+                <ul class="guide-list">
+                    <li>
+                        <a href="/activity/sleep?level={{ level }}" class="activity-btn">😴 Track Sleep</a>
+                    </li>
+                    <li>
+                        <a href="/activity/yoga?level={{ level }}" class="activity-btn">
+                            🧘 Practice Yoga
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/activity/gratitude?level={{ level }}" class="activity-btn">
+                            ✍️ Write 3 positive things about today
+                        </a>
+                    </li>
+                </ul>
+
+            {% else %}
+
+                <p class="guide-sub">💖 You’re not alone. Take support:</p>
+
+                <ul class="guide-list">
+                    <li>
+                        <a href="/activity/outdoor?level={{ level }}" class="activity-btn">
+                            🌤 Spend Time Outdoors
+                        </a>
+                    </li>
+                    <li><a href="/activity/breathing?level={{ level }}" class="activity-btn">
+                        🧘 Practice Breathing
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/activity/professional_help?level={{ level }}" class="activity-btn">
+                            🧠 Consider professional help
+                        </a>    
+                    </li>
+                </ul>
+
+            {% endif %}
+
+            <div class="actions">
+                <a href="{{ url_for('mood_check') }}" class="btn secondary">Back to Mood Check</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("hidden");
+}
+</script>
+</body>
+</html>

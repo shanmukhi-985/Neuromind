@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Talk to a Friend</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard">
+
+<div class="sidebar">
+    <h2>You're not alone 💛</h2>
+    <p class="username">{{ username }}</p>  
+</div>
+
+<div class="content">
+<div class="main-box">
+
+<h2>Add Someone You Trust</h2>
+
+<form method="POST" action="/contacts?level={{ level }}">
+    <input class="input-box" type="text" name="name" placeholder="Friend Name" required>
+    <input class="input-box" type="text" name="phone" placeholder="Phone Number" required>
+
+    <br><br>
+    <button class="btn primary">Save Contact</button>
+</form>
+
+<hr style="margin:20px 0;">
+
+<h3>Your Contacts</h3>
+
+<div class="contact-list">
+
+{% for c in contacts %}
+    <div class="contact-card">
+    <div>
+        <p><strong>{{ c.name }}</strong></p>
+        <p>{{ c.phone }}</p>
+    </div>
+
+    <div class="contact-actions">
+        <a href="tel:{{ c.phone }}" class="btn secondary">📞 Call</a>
+
+       <a href="/delete_contact/{{ c.id }}?level={{ level }}" 
+            class="btn danger"
+            onclick="return confirm('Are you sure you want to delete this contact?')">
+            ❌ Delete
+        </a>
+    </div>
+</div>
+{% endfor %}
+
+</div>
+<a href="/guidance/{{ level }}">
+    ⬅ Back to Guidance
+</a>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

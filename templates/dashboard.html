@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    {% include 'sidebar.html' %}
+
+    <!-- MAIN CONTENT -->
+    <div class="content">
+
+        
+        <div class="main-box">
+
+            <h2>Greetings!!</h2>
+
+            {% if reminder %}
+                <div class="reminder-banner">
+                    <br>
+                    ⚠️ You haven't completed today's wellness activities yet.
+                </div>
+            {% endif %}
+
+            <div class="stats-row">
+                <div class="stat-card">
+                    🔥 {{ streak }} Day Streak
+                </div>
+
+                <div class="stat-card">
+                    📊 {{ completion_rate }}% Completion
+                </div>
+            </div>
+
+            <p class="quote">"{{ quote }}"</p>
+
+        </div>
+    
+
+    </div>
+
+</div>
+<script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("hidden");
+}
+</script>
+</body>
+</html>

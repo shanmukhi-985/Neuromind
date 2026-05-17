@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Positive Reflection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard-page">
+
+<div class="dashboard">
+
+<div class="sidebar">
+    <h2>Positive Reflection 🌟</h2>
+    <p class="username">{{ username }}</p>
+</div>
+
+<div class="content">
+<div class="main-box">
+
+    <h2>Write 3 Positive Things About Today</h2>
+
+    <form method="POST">
+
+        <textarea name="point1" class="input-box" rows="2" placeholder="Positive thing #1" required></textarea>
+        
+
+        <textarea name="point2" class="input-box" rows="2" placeholder="Positive thing #2" required></textarea>
+        
+
+        <textarea name="point3" class="input-box" rows="2" placeholder="Positive thing #3" required></textarea>
+        
+
+        <button type="submit" class="btn primary">
+            Save Reflection
+        </button>
+
+    </form>
+
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

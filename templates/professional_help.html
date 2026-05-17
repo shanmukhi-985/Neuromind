@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Professional Help</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard">
+
+<div class="sidebar">
+    <h2>Support Matters 🧠</h2>
+    <p class="username">{{ username }}</p>
+</div>
+
+<div class="content">
+<div class="main-box">
+
+    <h2>Professional Help Can Make a Difference</h2>
+
+    <p class="guide-sub">
+        Seeking professional support is a sign of strength.
+    </p>
+
+    <ul class="guide-list">
+        <li>✔ Persistent sadness for many days</li>
+        <li>✔ Trouble functioning daily</li>
+        <li>✔ Loss of motivation or hope</li>
+        <li>✔ Feeling overwhelmed often</li>
+    </ul>
+
+    <p>
+        A counselor, therapist, or mental health professional
+        can provide structured support tailored to you.
+    </p>
+
+    <form method="POST">
+        <textarea name="'reflection" placeholder="'How are you feeing today?" required></textarea>
+        <button type="'submit">Submit Reflection</button>
+    </form>
+
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

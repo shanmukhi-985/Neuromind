@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Outdoor Time</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard">
+
+<div class="sidebar">
+    <h2>Outdoor Time 🌤</h2>
+    <p class="username">{{ username }}</p>
+</div>
+
+<div class="content">
+<div class="main-box">
+
+    <h2>Spend Time Outdoors</h2>
+    <p id="status">Take some fresh air and sunlight.</p>
+
+    <form method="POST">
+        <input type="hidden" name="duration" id="duration">
+
+        <div class="actions">
+            <button type="button" onclick="startOutdoor()" class="btn primary">Start</button>
+            <button type="button" onclick="stopOutdoor()" class="btn secondary">Stop</button>
+        </div>
+
+        <br>
+
+        <button type="submit" class="btn primary">Save Session</button>
+    </form>
+
+</div>
+</div>
+
+</div>
+
+<script>
+let startTime;
+
+function startOutdoor() {
+    startTime = new Date();
+    document.getElementById("status").innerText =
+        "Outdoor session started...";
+}
+
+function stopOutdoor() {
+    if (!startTime) {
+        alert("Click Start first!");
+        return;
+    }
+
+    let endTime = new Date();
+    let durationMs = endTime - startTime;
+
+    let minutes = Math.floor(durationMs / 60000);
+    let seconds = Math.floor((durationMs % 60000) / 1000);
+
+    document.getElementById("duration").value =
+        `${minutes} min ${seconds} sec`;
+
+    document.getElementById("status").innerText =
+        `Completed: ${minutes} min ${seconds} sec`;
+}
+</script>
+
+</body>
+</html>

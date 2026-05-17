@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Walk</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>Walk daily 🚶</h2>
+        <p class="username">{{ username }}</p>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="content">
+
+        <div class="main-box">
+
+            <h2>Walking Session 🚶</h2>
+            <p id="status">Click start to begin</p>
+
+            <form method="POST">
+                <input type="hidden" name="start" id="startTime">
+                <input type="hidden" name="end" id="endTime">
+                <input type="hidden" name="duration" id="duration">
+                <div class="actions">
+                    <button type="button" onclick="startWalk()" class="btn primary">Start</button>
+                    <button type="button" onclick="stopWalk()" class="btn secondary">Stop</button>
+                </div>
+
+                <br>
+
+                <button type="submit" class="btn primary" style="margin-top: -40px;">Save Session</button>
+            </form>
+            <a href="/guidance/{{ level }}" style="margin-bottom: 50px;">
+                ⬅ Back to Guidance
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+let startTime;
+
+function startWalk() {
+    startTime = new Date();
+    document.getElementById("startTime").value = startTime.toISOString();
+    document.getElementById("status").innerText = "Walking started...";
+}
+function stopWalk() {
+    if (!startTime) {
+        alert("Click Start first!");
+        return;
+    }
+
+    let endTime = new Date();
+    document.getElementById("endTime").value = endTime.toISOString();
+
+    let durationMs = endTime - startTime;
+    let minutes = Math.floor(durationMs / 60000);
+    let seconds = Math.floor((durationMs % 60000) / 1000);
+
+    document.getElementById("status").innerText =
+        `Walk completed: ${minutes} min ${seconds} sec`;
+
+    document.getElementById("duration").value = minutes;
+}
+</script>
+
+</body>
+</html>

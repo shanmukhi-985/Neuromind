@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breathing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard">
+
+    <div class="sidebar">
+        <h2>Take a breathe</h2>
+        <p class="username">{{ username }}</p>
+    </div>
+
+<div class="content">
+<div class="main-box">
+
+<h2>Guided Breathing 🧘</h2>
+<p id="status">Relax... breathe slowly</p>
+
+<form method="POST">
+    <input type="hidden" name="duration" id="duration">
+
+    <div class="actions">
+        <button type="button" onclick="startBreathing()" class="btn primary">Start</button>
+        <button type="button" onclick="stopBreathing()" class="btn secondary">Stop</button>
+    </div>
+
+    <br>
+    <button type="submit" class="btn primary">Save Session</button>
+</form>
+<a href="{{ url_for('guidance', level=level) }}">
+    ⬅ Back to Guidance
+</a>
+</div>
+</div>
+
+</div>
+
+<script>
+let startTime;
+
+function startBreathing() {
+    startTime = new Date();
+    document.getElementById("status").innerText = "Inhale... Exhale...";
+}
+
+function stopBreathing() {
+    if (!startTime) {
+        alert("Click Start first!");
+        return;
+    }
+
+    let endTime = new Date();
+    let durationMs = endTime - startTime;
+    let minutes = Math.floor(durationMs / 60000);
+
+    document.getElementById("status").innerText =
+        `Session done: ${minutes} min`;
+
+    document.getElementById("duration").value = minutes;
+}
+</script>
+
+</body>
+</html>

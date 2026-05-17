@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Light Assessment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard">
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    {% include 'sidebar.html' %}
+
+    <!-- MAIN -->
+    <div class="content">
+
+        <div class="main-box quick-check-box">
+
+            <h2>Light Mood Assessment</h2>
+
+            <form method="POST">
+
+                <label>Feeling low?</label>
+                <input type="range" name="q1" min="0" max="5" required>
+
+                <label>Energy levels?</label>
+                <input type="range" name="q2" min="0" max="5" required>
+
+                <br><br>
+
+                <button type="submit">Analyze</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("hidden");
+}
+</script>
+</body>
+</html>

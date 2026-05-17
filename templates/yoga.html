@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Yoga Practice</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard-page">
+
+<div class="dashboard">
+
+<div class="sidebar">
+    <h2>Yoga Practice 🧘</h2>
+    <p class="username">{{ username }}</p>
+</div>
+
+<div class="content">
+<div class="main-box">
+
+    <h2>Today's Yoga Routine</h2>
+
+    <ul class="guide-list">
+        {% for pose in yoga_list %}
+            <li>{{ pose }}</li>
+        {% endfor %}
+    </ul>
+
+    <form method="POST">
+        <button type="submit" class="btn primary">
+            Mark as Completed
+        </button>
+    </form>
+
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

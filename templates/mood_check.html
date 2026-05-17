@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mood Check</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard-page">
+
+<div class="dashboard">
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    {% include 'sidebar.html' %}
+
+    <div class="content">
+        <div class="main-box">
+
+            <h1>How are you feeling today?</h1>
+            <p>Take a moment to check in with yourself.</p>
+
+            <div class="actions">
+                <a href="/input_test" class="btn primary">Give Fuzzy Inputs</a>
+                <a href="/scan_emotion" class="btn secondary">
+                    Scan Your Emotions
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("hidden");
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calming Music</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard">
+
+<div class="sidebar">
+    <h2>Relax 🎧</h2>
+    <p class="username">{{ username }}</p>
+</div>
+
+<div class="content">
+<div class="main-box">
+
+<h2>Choose your language</h2>
+
+<form method="POST">
+
+<select name="value" required class="input-box">
+    <option value="" disabled selected>Select Language</option>
+    <option value="english">English</option>
+    <option value="telugu">Telugu</option>
+    <option value="hindi">Hindi</option>
+    <option value="tamil">Tamil</option>
+</select>
+
+<br><br>
+
+<button type="submit" class="btn primary play-btn">Play Music</button>
+
+</form>
+
+{% if songs is not none %}
+    {% if songs %}
+        <h3>Recommended Songs:</h3>
+
+        <div class="music-list">
+            {% for song in songs %}
+                <a href="{{ song.link }}" target="_blank" class="music-card">
+                    🎵 {{ song.name }}
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No songs found for this selection.</p>
+    {% endif %}
+{% endif %}
+<a href="/guidance/{{ level }}" >
+    ⬅ Back to Guidance
+</a>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

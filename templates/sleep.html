@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sleep Tracking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard">
+
+<div class="sidebar">
+    <h2>Track your sleep 😴</h2>
+    <p class="username">{{ username }}</p>
+</div>
+
+<div class="content">
+<div class="main-box">
+
+<h2>How many hours did you sleep?</h2>
+
+<form method="POST">
+
+<input style="margin-top: 30px;"type="number" step="0.5" name="hours" placeholder="Enter hours" required>
+
+<br><br>
+
+<button class="btn primary">Save Sleep</button>
+
+</form>
+
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

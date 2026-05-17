@@ -1,0 +1,38 @@
+<div class="sidebar" id="sidebar">
+
+    <h2>Welcome 👋</h2>
+    <p class="username">{{ username }}</p>
+
+    <div class="menu">
+        <a href="/dashboard">Home</a>
+        <a href="/mood_check">Mood Check</a>
+        <a href="/progress">Progress</a>
+        <div class="logout-dropdown">
+
+            <button type="button" class="menu-toggle-btn" onclick="toggleLogoutMenu()">
+                Logout
+            </button>
+
+            <div id="logoutMenu" class="logout-submenu">
+                <a href="/logout">Logout</a>
+
+                <a href="/delete_account"
+                onclick="return confirm('Are you sure you want to permanently delete your account?')">
+                Delete Account
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+function toggleLogoutMenu() {
+    const menu = document.getElementById("logoutMenu");
+
+    if (menu.style.display === "flex") {
+        menu.style.display = "none";
+    } else {
+        menu.style.display = "flex";
+    }
+}
+</script>

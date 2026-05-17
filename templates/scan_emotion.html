@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scan Emotion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    {% include 'sidebar.html' %}
+
+    <!-- MAIN CONTENT -->
+    <div class="content">
+
+        <div class="main-box">
+
+            <h2>Scan Your Emotion</h2>
+            <p style="margin-bottom: 15px;">
+                Make sure your face is clearly visible 😊
+            </p>
+
+            <!-- FORM -->
+            <form id="form" method="POST" action="/process_emotion">
+
+                <input type="hidden" name="image" id="imageInput">
+
+                <!-- VIDEO -->
+                <video id="video" autoplay class="camera-box"></video>
+
+                <!-- CANVAS -->
+                <canvas id="canvas" style="display:none;"></canvas>
+
+                <br><br>
+
+                <!-- BUTTON -->
+                <button type="button" class="btn primary" onclick="capture()">
+                    📸 Capture & Analyze
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+navigator.mediaDevices.getUserMedia({ video: true })
+.then(stream => {
+    document.getElementById('video').srcObject = stream;
+})
+.catch(() => {
+    alert("Camera access denied");
+});
+
+function capture() {
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(video, 0, 0);
+
+    // compress image
+    const data = canvas.toDataURL('image/jpeg', 0.5);
+
+    document.getElementById('imageInput').value = data;
+
+    // STOP CAMERA (important)
+    let stream = video.srcObject;
+    if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+    }
+
+    document.getElementById('form').submit();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assessment</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    {% include 'sidebar.html' %}
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <div class="main-box">
+            <h2>Quick Mental Check</h2>
+
+            <form method="POST">
+
+                <label>1. Feeling low or hopeless?</label>
+                <input type="range" name="q1" min="0" max="5" required>
+
+                <label>2. Trouble sleeping?</label>
+                <input type="range" name="q2" min="0" max="5" required>
+
+                <label>3. Loss of interest in activities?</label>
+                <input type="range" name="q3" min="0" max="5" required>
+
+                <br><br>
+
+                <button type="submit">Submit Assessment</button>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>
+<script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("hidden");
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Progress</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard">
+<button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+{% include 'sidebar.html' %}
+
+<div class="content">
+<div class="main-box">
+<h2>Progress Overview</h2>
+{% if today_done %}
+    <div class="progress-status success">
+        ✅ Great job! You completed all today's activities. Come back tomorrow 🌟
+    </div>
+{% else %}
+{% endif %}
+<div class="stats-row">
+    <div class="stat-card">
+        🔥 <b>{{ streak }}</b><br>Day Streak
+    </div>
+
+    <div class="stat-card">
+        📊 <b>{{ completion_rate }}%</b><br>Completion Rate
+    </div>
+</div>
+    <p class="info-text">
+    ⚠️ Streak increases only when all daily activities are completed.
+    </p>
+
+{% if grouped %}
+    {% for day in progress_data %}
+    <div class="progress-day">
+
+        <h3>Day {{ loop.index }}</h3>
+        <p>{{ day.date }}</p>
+
+        {% for activity, values in day.activities.items() %}
+            <div class="activity-card">
+
+                <div class="activity-left">
+                    <b>{{ activity.replace('_',' ').title() }}</b>
+                </div>
+
+                <div class="activity-right">
+                    {% if values|length > 1 %}
+                        {{ values|length }} entries
+                    {% else %}
+                        {{ values[0] }}
+                    {% endif %}
+                </div>
+
+            </div>
+        {% endfor %}
+
+    </div>
+{% endfor %}
+{% else %}
+    <p>No progress recorded yet.</p>
+{% endif %}
+</div>
+</div>
+
+</div>
+<script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("hidden");
+}
+</script>
+</body>
+</html>

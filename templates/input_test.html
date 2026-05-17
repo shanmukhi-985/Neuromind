@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mood Check</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    {% include 'sidebar.html' %}
+    <!-- MAIN CONTENT -->
+    <div class="content">
+
+        <div class="main-box">
+            <h1 >Tell us how you're feeling</h1>
+            <p>Slide to reflect your current state.</p>
+
+            <form method="POST">
+
+                <label>Sadness level</label>
+                <input type="range" name="sad" min="0" max="10">
+
+                <label>Energy level</label>
+                <input type="range" name="energy" min="0" max="10">
+
+                <label>Sleep quality</label>
+                <input type="range" name="sleep" min="0" max="10">
+
+                <label>Interest in activities</label>
+                <input type="range" name="interest" min="0" max="10">
+
+                <button type="submit">Analyze</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("hidden");
+}
+</script>
+</body>
+</html>

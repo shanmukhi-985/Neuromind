@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="main">
+    <h1 class="brand-title">NeuroMind</h1>
+    <p class="tagline">A gentle space to check in with yourself.</p>
+
+    <div class="container">
+        <h2>Welcome Back!</h2>
+
+    <form method="POST">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+        {% if message %}
+        <p class="error">{{ message }}</p>
+        {% endif %}
+    </form>
+        <p>Don't have an account? <a href="/register">Register</a></p>
+    </div>
+
+</div>
+</body>
+</html>
