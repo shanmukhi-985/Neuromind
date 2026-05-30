@@ -110,7 +110,7 @@ python app.py
 ### 7. Open in Browser
 
 ```text
-http://127.0.0.1:5000
+https://neuromind.onrender.com
 ```
 
 ## 🎯 Objectives
