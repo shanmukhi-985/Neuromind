@@ -53,8 +53,7 @@ app.config['SECRET_KEY'] = 'NeuroMind_2026_Secure_Key_@8472'
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-with app.app_context():
-    db.create_all()
+
 # DATABASE MODEL
 
 class User(db.Model):
@@ -1054,8 +1053,8 @@ def professional_help():
         'professional_help.html',
         username=user.username
     )
+with app.app_context():
+    db.create_all()
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
     app.run(debug=True)
