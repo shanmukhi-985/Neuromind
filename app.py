@@ -49,11 +49,12 @@ def calculate_completion(user_id, level):
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['SECRET_KEY'] = 'secret123'
+app.config['SECRET_KEY'] = 'NeuroMind_2026_Secure_Key_@8472'
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-
+with app.app_context():
+    db.create_all()
 # DATABASE MODEL
 
 class User(db.Model):
